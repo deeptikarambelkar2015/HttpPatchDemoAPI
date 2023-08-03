@@ -17,6 +17,22 @@ namespace DempAPI.Controllers
         {
             _context = context;
         }
+
+        [HttpPost]
+        public IActionResult Post([FromBody] Employee employee)
+        {
+            _context.Employee.Add(employee);
+            _context.SaveChanges();
+            return Ok(employee);
+        }
+        [HttpPut]
+        public IActionResult Put([FromBody] Employee employee)
+        {
+            _context.Employee.Update(employee);
+            _context.SaveChanges();
+            return Ok(employee);
+        }
+
         [HttpPatch("{employeeId}")]
         public IActionResult Patch(int employeeId, [FromBody] JsonPatchDocument<Employee> patch)
         {
